@@ -10,7 +10,7 @@ public class Notes {
     @OneToOne
     private Recipe recipe;
     @Lob
-    private String recipèNotes;
+    private String recipeNotes;
 
     public Long getId() {
         return id;
@@ -28,11 +28,13 @@ public class Notes {
         this.recipe = recipe;
     }
 
-    public String getRecipèNotes() {
-        return recipèNotes;
+    public String getRecipeNotes() {
+        return recipeNotes;
     }
 
-    public void setRecipèNotes(String recipèNotes) {
-        this.recipèNotes = recipèNotes;
+    public void setRecipeNotes(String recipèNotes) {
+        this.recipeNotes = recipèNotes;
     }
+
+
 }
