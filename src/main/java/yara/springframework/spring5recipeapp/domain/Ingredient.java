@@ -3,6 +3,7 @@ package yara.springframework.spring5recipeapp.domain;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+
 @Entity
 public class Ingredient {
     @Id
@@ -32,34 +33,46 @@ public class Ingredient {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public BigDecimal getAmount() {
+        return this.amount;
+    }
+
+    public UnitOfMeasure getUom() {
+        return this.uom;
+    }
+
+    public Recipe getRecipe() {
+        return this.recipe;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
     }
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public String toString() {
+        return "Ingredient(id=" + this.getId() + ", description=" + this.getDescription() + ", amount=" + this.getAmount() + ", uom=" + this.getUom() + ", recipe=" + this.getRecipe() + ")";
     }
 }
