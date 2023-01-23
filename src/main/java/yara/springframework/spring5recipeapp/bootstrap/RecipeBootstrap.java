@@ -1,5 +1,8 @@
 package yara.springframework.spring5recipeapp.bootstrap;
 
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 import yara.springframework.spring5recipeapp.domain.*;
 import yara.springframework.spring5recipeapp.repositories.CategoryRepository;
 import yara.springframework.spring5recipeapp.repositories.RecipeRepository;
@@ -9,8 +12,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-public class RecipeBootstrap {
+@Component
+public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private final CategoryRepository categoryRepository;
     private final RecipeRepository recipeRepository;
     private final UnitOfMeasureRepository unitOfMeasureRepository;
@@ -19,6 +22,11 @@ public class RecipeBootstrap {
         this.categoryRepository = categoryRepository;
         this.recipeRepository = recipeRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        recipeRepository.saveAll(getRecipes());
     }
 
     private List<Recipe> getRecipes(){
