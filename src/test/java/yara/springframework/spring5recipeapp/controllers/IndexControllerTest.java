@@ -28,6 +28,8 @@ class IndexControllerTest {
 
     @Test
     void getIndexPage() {
+
+        //
         String viewName = controller.getIndexPage(model);
 
         assertEquals("index", viewName);
