@@ -9,9 +9,6 @@ import yara.springframework.spring5recipeapp.commands.RecipeCommand;
 import yara.springframework.spring5recipeapp.domain.Category;
 import yara.springframework.spring5recipeapp.domain.Recipe;
 
-/**
- * Created by jt on 6/21/17.
- */
 @Component
 public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand>{
 

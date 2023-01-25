@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 import yara.springframework.spring5recipeapp.commands.CategoryCommand;
 import yara.springframework.spring5recipeapp.domain.Category;
 
-/**
- * Created by jt on 6/21/17.
- */
 @Component
 public class CategoryCommandToCategory implements Converter<CategoryCommand, Category>{
 

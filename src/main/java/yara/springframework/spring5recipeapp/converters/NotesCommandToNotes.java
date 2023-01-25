@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 import yara.springframework.spring5recipeapp.commands.NotesCommand;
 import yara.springframework.spring5recipeapp.domain.Notes;
 
-/**
- * Created by jt on 6/21/17.
- */
 @Component
 public class NotesCommandToNotes implements Converter<NotesCommand, Notes> {
 

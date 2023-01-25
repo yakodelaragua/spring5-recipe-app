@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 import yara.springframework.spring5recipeapp.commands.UnitOfMeasureCommand;
 import yara.springframework.spring5recipeapp.domain.UnitOfMeasure;
 
-/**
- * Created by jt on 6/21/17.
- */
 @Component
 public class UnitOfMeasureToUnitOfMeasureCommand implements Converter<UnitOfMeasure, UnitOfMeasureCommand> {
 

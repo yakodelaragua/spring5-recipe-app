@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 import yara.springframework.spring5recipeapp.commands.RecipeCommand;
 import yara.springframework.spring5recipeapp.domain.Recipe;
 
-/**
- * Created by jt on 6/21/17.
- */
 @Component
 public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 

@@ -6,9 +6,6 @@ import org.springframework.stereotype.Component;
 import yara.springframework.spring5recipeapp.commands.IngredientCommand;
 import yara.springframework.spring5recipeapp.domain.Ingredient;
 
-/**
- * Created by jt on 6/21/17.
- */
 @Component
 public class IngredientCommandToIngredient implements Converter<IngredientCommand, Ingredient> {
 
