@@ -1,9 +1,10 @@
 package yara.springframework.spring5recipeapp.domain;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
-
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
     @Id

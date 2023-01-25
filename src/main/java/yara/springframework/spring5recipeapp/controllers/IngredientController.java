@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import yara.springframework.spring5recipeapp.commands.IngredientCommand;
+import yara.springframework.spring5recipeapp.commands.RecipeCommand;
 import yara.springframework.spring5recipeapp.commands.UnitOfMeasureCommand;
 import yara.springframework.spring5recipeapp.services.IngredientService;
 import yara.springframework.spring5recipeapp.services.RecipeService;
@@ -38,6 +39,29 @@ public class IngredientController {
     }
 
     @GetMapping
+    @RequestMapping("recipe/{recipeId}/ingredient/new/")
+    public String newIngredient(@PathVariable String recipeId, Model model){
+
+        //make sure we have a good id value
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+        //todo raise exception if null
+
+        //need to return back parent id for hidden form property
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+
+        //init uom
+        ingredientCommand.setUom(new UnitOfMeasureCommand());
+
+        model.addAttribute("uomList",  unitOfMeasureService.listAllUoms());
+
+        return "recipe/ingredient/ingredientform";
+    }
+
+
+
+    @GetMapping
     @RequestMapping("recipe/{recipeId}/ingredient/{id}/update/")
     public String updateRecipeIngredient(@PathVariable String recipeId,
                                          @PathVariable String id, Model model){
@@ -53,6 +77,7 @@ public class IngredientController {
     @PostMapping("recipe/{recipeId}/ingredient/")
     public String saveOrUpdate(@ModelAttribute IngredientCommand command){
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
+        System.out.println("------------------" + savedCommand.getRecipeId());
 
         log.debug("saved receipe id:" + savedCommand.getRecipeId());
         log.debug("saved ingredient id:" + savedCommand.getId());
