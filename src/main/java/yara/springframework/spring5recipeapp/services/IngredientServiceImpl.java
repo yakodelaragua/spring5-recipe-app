@@ -36,12 +36,21 @@ public class IngredientServiceImpl implements IngredientService {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
 
+        if (!recipeOptional.isPresent()){
+            //todo impl error handling
+            log.error("recipe id not found. Id: " + recipeId);
+        }
+
         Recipe recipe = recipeOptional.get();
 
         Optional<IngredientCommand> ingredientCommandOptional = recipe.getIngredients().stream()
                 .filter(ingredient -> ingredient.getId().equals(ingredientId))
-                .map(ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
+                .map( ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
 
+        if(!ingredientCommandOptional.isPresent()){
+            //todo impl error handling
+            log.error("Ingredient id not found: " + ingredientId);
+        }
 
         return ingredientCommandOptional.get();
     }
@@ -52,10 +61,9 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
 
         if(!recipeOptional.isPresent()){
-
-            //todo toss error if not found!
             log.error("Recipe not found for id: " + command.getRecipeId());
             return new IngredientCommand();
+
         } else {
             Recipe recipe = recipeOptional.get();
 
@@ -71,7 +79,8 @@ public class IngredientServiceImpl implements IngredientService {
                 ingredientFound.setAmount(command.getAmount());
                 ingredientFound.setUom(unitOfMeasureRepository
                         .findById(command.getUom().getId())
-                        .orElseThrow(() -> new RuntimeException("UOM NOT FOUND"))); //todo address this
+                        .orElseThrow(() -> new RuntimeException("UOM NOT FOUND")));
+
             } else {
                 //add new Ingredient
                 recipe.addIngredient(ingredientCommandToIngredient.convert(command));
