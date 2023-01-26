@@ -1,10 +1,16 @@
 package yara.springframework.spring5recipeapp.commands;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import yara.springframework.spring5recipeapp.domain.Difficulty;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class RecipeCommand {
     private Long id;
     private String description;
@@ -15,106 +21,8 @@ public class RecipeCommand {
     private String url;
     private String directions;
     private Set<IngredientCommand> ingredients = new HashSet<>();
+    private Byte[] image;
     private Difficulty difficulty;
     private NotesCommand notes;
     private Set<CategoryCommand> categories = new HashSet<>();
-
-    public RecipeCommand() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Integer getPrepTime() {
-        return prepTime;
-    }
-
-    public Integer getCookTime() {
-        return cookTime;
-    }
-
-    public Integer getServings() {
-        return servings;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getDirections() {
-        return directions;
-    }
-
-    public Set<IngredientCommand> getIngredients() {
-        return ingredients;
-    }
-
-    public Difficulty getDifficulty() {
-        return difficulty;
-    }
-
-    public NotesCommand getNotes() {
-        return notes;
-    }
-
-    public Set<CategoryCommand> getCategories() {
-        return categories;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setPrepTime(Integer prepTime) {
-        this.prepTime = prepTime;
-    }
-
-    public void setCookTime(Integer cookTime) {
-        this.cookTime = cookTime;
-    }
-
-    public void setServings(Integer servings) {
-        this.servings = servings;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public void setDirections(String directions) {
-        this.directions = directions;
-    }
-
-    public void setIngredients(Set<IngredientCommand> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public void setNotes(NotesCommand notes) {
-        this.notes = notes;
-    }
-
-    public void setCategories(Set<CategoryCommand> categories) {
-        this.categories = categories;
-    }
 }
